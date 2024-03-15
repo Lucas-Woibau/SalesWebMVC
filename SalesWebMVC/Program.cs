@@ -15,11 +15,15 @@ namespace SalesWebMVC
                 options.UseMySql(connectionString,
                 new MySqlServerVersion(new Version(7,0,23))?? throw new InvalidOperationException("Connection string 'SalesWebMVCContext' not found.")));
 
+            //Seeding the DB
+            builder.Services.AddScoped<SeedingService>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
+
+            app.Services.CreateScope().ServiceProvider.GetRequiredService<SeedingService>().Seed();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
