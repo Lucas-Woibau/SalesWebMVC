@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using SalesWebMVC.Data;
-using SalesWebMVC.Models;
 using SalesWebMVC.Services;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 namespace SalesWebMVC
 {
@@ -16,7 +16,16 @@ namespace SalesWebMVC
 
             builder.Services.AddDbContext<SalesWebMVCContext>(options =>
                 options.UseMySql(connectionString,
-                new MySqlServerVersion(new Version(7,0,23))?? throw new InvalidOperationException("Connection string 'SalesWebMVCContext' not found.")));
+                new MySqlServerVersion(new Version(7, 0, 23)) ?? throw new InvalidOperationException("Connection string 'SalesWebMVCContext' not found.")));
+
+            var ptBR = new CultureInfo("pt-BR");
+            var localizationOptions = new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture(ptBR),
+                SupportedCultures = new List<CultureInfo> { ptBR },
+                SupportedUICultures = new List<CultureInfo> { ptBR }
+            };
+
 
             //Seeding the DB
             builder.Services.AddScoped<SeedingService>();
@@ -29,6 +38,8 @@ namespace SalesWebMVC
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
+
+            app.UseRequestLocalization(localizationOptions);
 
             app.Services.CreateScope().ServiceProvider.GetRequiredService<SeedingService>().Seed();
 
