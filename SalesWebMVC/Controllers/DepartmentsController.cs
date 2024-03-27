@@ -140,7 +140,13 @@ namespace SalesWebMvc.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var department = await _context.Department.FindAsync(id);
-            _context.Department.Remove(department);
+
+            if (department != null)
+            {
+                _context.Department.Remove(department);
+            }
+
+            //_context.Department.Remove(department);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
