@@ -2,10 +2,10 @@
     ViewData["Title"] = "Sales Records";
 }
 
-<h2>@ViewData["Title"]</h2>
+<h1>@ViewData["Title"]</h1>
 <div class="row">
     <div class="col-md-6">
-        <form class="form-horizontal" asp-action="SimpleSearch">
+        <form class="form-label" asp-action="SimpleSearch">
             <fieldset>
                 <br />
                 <legend>Simple search</legend>
@@ -25,7 +25,7 @@
                 <br />
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-success">Submit</button>
                     </div>
                 </div>
             </fieldset>
@@ -33,7 +33,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="inline">
     <div class="col-md-6">
         <form class="form-horizontal" asp-action="GroupingSearch">
             <fieldset>
@@ -55,7 +55,7 @@
                 <br />
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-success">Submit</button>
                     </div>
                 </div>
             </fieldset>
