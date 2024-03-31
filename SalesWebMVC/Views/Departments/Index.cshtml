@@ -6,7 +6,7 @@
 
 <h1>Departments</h1>
 
-<table class="table table-hover">
+<table class="table table-striped">
 	<thead class="table-dark">
 		<tr>
 			<th>
@@ -18,7 +18,7 @@
 	<tbody>
 		@foreach (var item in Model)
 		{
-			<tr class="table-active">
+			<tr>
 				<td>
 					@Html.DisplayFor(modelItem => item.Name)
 				</td>

@@ -6,7 +6,7 @@
     DateTime maxDate = DateTime.Parse(ViewData["maxDate"] as string);
 }
 
-<h2>@ViewData["Title"]</h2>
+<h1>@ViewData["Title"]</h1>
 
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
@@ -21,7 +21,7 @@
                     <input type="date" class="form-control" name="maxDate" value=@ViewData["maxDate"]>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Filter</button>
+            <button type="submit" class="btn btn-success">Filter</button>
         </form>
     </div>
 </nav>
@@ -30,11 +30,11 @@
 {
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title">Department @departmentGroup.Key.Name, Total sales = @departmentGroup.Key.TotalSales(minDate, maxDate).ToString("F2")</h3>
+            <h2 class="panel-title">Department @departmentGroup.Key.Name, Total sales = @departmentGroup.Key.TotalSales(minDate, maxDate).ToString("F2")</h2>
         </div>
         <div class="panel-body">
-            <table class="table table-striped table-hover">
-                <thead>
+            <table class="table table-striped">
+                <thead class="table-dark">
                     <tr class="success">
                         <th>
                             Date

@@ -6,8 +6,8 @@
 
 <h1>@ViewData["Title"]</h1>
 
-<table class="table table-hover">
-    <thead class="table-dark">
+<table class="table table-striped">
+    <thead class="table table-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
@@ -28,7 +28,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr class="table-active">
+            <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
