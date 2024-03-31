@@ -22,6 +22,7 @@ namespace SalesWebMVC.Controllers
         public IActionResult About()
         {
             ViewData["Email"] = "lucaswoibau7@gmail.com";
+            ViewData["Message"] = "Sistema Web com ASP .NET Core MVC e Entity Framework desenvolvido durante o \"C# COMPLETO Programação Orientada a Objetos + Projetos";
             return View();
         }
 
