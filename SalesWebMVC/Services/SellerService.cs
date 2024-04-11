@@ -23,7 +23,7 @@ namespace SalesWebMVC.Services
         public async Task InsertAsync(Seller obj)
         {
              //obj.Department = _context.Department.First();
-            _context.Add(obj);
+            await _context.AddAsync(obj);
             await _context.SaveChangesAsync();
         }
 
@@ -37,8 +37,11 @@ namespace SalesWebMVC.Services
             try
             {
                 var obj = await _context.Seller.FindAsync(id);
-                _context.Seller.Remove(obj);
-                await _context.SaveChangesAsync();
+                if(obj is not null)
+                {
+                    _context.Seller.Remove(obj);
+                    await _context.SaveChangesAsync();
+                }
             }
             catch (DbUpdateException e)
             {
