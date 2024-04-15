@@ -3,6 +3,7 @@ using SalesWebMVC.Data;
 using SalesWebMVC.Services;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.IdentityModel.Tokens;
 
 namespace SalesWebMVC
 {
@@ -14,12 +15,18 @@ namespace SalesWebMVC
 
             var connectionString = builder.Configuration.GetConnectionString("SalesWebMvcContext");
 
-            /*builder.Services.AddDbContext<SalesWebMVCContext>(options =>
-                options.UseMySql(connectionString,
-                new MySqlServerVersion(new Version(7, 0, 23)) ?? throw new InvalidOperationException("Connection string 'SalesWebMVCContext' not found.")));
-            */
+            if (!string.IsNullOrEmpty(connectionString))
+            {
+                builder.Services.AddDbContext<SalesWebMVCContext>(options =>
+                    options.UseMySql(connectionString,
+                    new MySqlServerVersion(new Version(7, 0, 23))?? throw new InvalidOperationException("Connection string 'SalesWebMVCContext' not found.")));
 
-            builder.Services.AddDbContext<SalesWebMVCContext>(options => options.UseInMemoryDatabase("saleswebmvcapp"));
+            }
+            else
+            {
+                builder.Services.AddDbContext<SalesWebMVCContext>(options => options.UseInMemoryDatabase("saleswebmvcapp"));
+            }
+
 
             var ptBR = new CultureInfo("pt-BR");
             var localizationOptions = new RequestLocalizationOptions
